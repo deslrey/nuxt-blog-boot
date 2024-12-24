@@ -52,7 +52,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>()
                 .eq(Article::getId, id)
                 .eq(Article::getExist, true);
-
         Article article = getOne(queryWrapper);
         if (article == null) {
             return Results.fail("当前文章不存在");
@@ -81,5 +80,19 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             return Results.fail("读取文件失败");
         }
     }
+
+    @Override
+    public Results<Article> getArticle(Integer id) {
+        if (id == null) {
+            return Results.fail("获取文章信息失败，请联系作者");
+        }
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>().eq(Article::getId, id).eq(Article::getExist, true);
+        Article article = getOne(queryWrapper);
+        if (article == null) {
+            return Results.fail("查看当前文章失败");
+        }
+        return Results.ok(article);
+    }
+
 }
 

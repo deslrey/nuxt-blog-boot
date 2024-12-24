@@ -36,4 +36,11 @@ public class ArticleController {
     public Results<String> getData(Integer id) {
         return articleService.getData(id);
     }
+
+    @PostMapping("getArticle")
+    public Results<Article> getArticle(Integer id){
+        return articleService.getArticle(id);
+
+    }
+
 }

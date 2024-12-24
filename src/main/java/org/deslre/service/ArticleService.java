@@ -19,4 +19,6 @@ public interface ArticleService extends IService<Article> {
     Results<List<Article>> getArticles();
 
     Results<String> getData(Integer id);
+
+    Results<Article> getArticle(Integer id);
 }
