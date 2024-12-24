@@ -1,9 +1,13 @@
 package org.deslre;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.annotation.ManagedBean;
+
 @SpringBootApplication
+@MapperScan("org.deslre.mapper")
 public class DeslreBlogApplication {
 
     public static void main(String[] args) {
