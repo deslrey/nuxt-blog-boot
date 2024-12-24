@@ -2,6 +2,9 @@ package org.deslre.service;
 
 import org.deslre.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.deslre.result.Results;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ArticleService extends IService<Article> {
 
+    Results<List<Article>> getArticles();
 }
