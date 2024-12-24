@@ -27,4 +27,6 @@ public interface ArticleService extends IService<Article> {
     Results<List<Article>> getList();
 
     Results<Void> addArticle(Article article);
+
+    Results<Void> updateArticle(Article article);
 }

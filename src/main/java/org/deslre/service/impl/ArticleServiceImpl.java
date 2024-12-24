@@ -139,5 +139,20 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         save(article);
         return Results.ok("添加成功");
     }
+
+    @Override
+    public Results<Void> updateArticle(Article article) {
+        if (article == null) {
+            return Results.fail("修改失败");
+        }
+        Article temp = getById(article.getId());
+        if (temp == null) {
+            return Results.fail("修改文章当前不存在");
+        }
+        article.setCreateTime(null);
+        article.setUpdateTime(null);
+        updateById(article);
+        return Results.ok("修改成功");
+    }
 }
 

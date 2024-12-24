@@ -58,5 +58,9 @@ public class ArticleController {
         return articleService.addArticle(article);
     }
 
+    @PostMapping("updateArticle")
+    public Results<Void> updateArticle(Article article) {
+        return articleService.updateArticle(article);
+    }
 
 }
