@@ -9,6 +9,9 @@ spring:
     password: 200381
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    port: 6379
+    host: localhost
 
 mybatis-plus:
   type-aliases-package: org.deslre.entity.po
