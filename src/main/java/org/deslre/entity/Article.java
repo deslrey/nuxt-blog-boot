@@ -3,7 +3,9 @@ package org.deslre.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +14,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author author
@@ -49,6 +51,11 @@ public class Article implements Serializable {
     private String storagePath;
 
     /**
+     * 图片存储地址
+     */
+    private String imagePath;
+
+    /**
      * 标签
      */
     private String tags;
@@ -57,6 +64,17 @@ public class Article implements Serializable {
      * 分类
      */
     private String category;
+
+    /**
+     * 添加日期
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新日期
+     */
+    private LocalDateTime updateTime;
+
 
     /**
      * 是否启用
