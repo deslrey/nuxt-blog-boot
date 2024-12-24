@@ -11,10 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +70,20 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 HtmlRenderer renderer = HtmlRenderer.builder().build();
                 String html = renderer.render(parser.parse(markdown));
 
+                // 替换 {% asset_img xxx.png %} 格式为 <img> 标签
+                html = html.replaceAll(
+                        "\\{%\\s*asset_img\\s+([a-zA-Z0-9._-]+)\\s*%}",
+                        "<img src=\"http://localhost:8080/deslre/images/$1\" alt=\"图片加载失败\">"
+                );
+
                 return Results.ok(html);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Results.fail("读取文件失败: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            return Results.fail("读取文件失败");
+            return Results.fail("处理文章失败");
         }
     }
 

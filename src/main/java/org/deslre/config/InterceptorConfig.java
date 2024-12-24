@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-    private final String imagePath = "E:\\images";
+    private final String imagePath = "E:\\nuxt-blog-net\\deslre-blog\\src\\main\\resources\\static\\data\\data.assets";
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
