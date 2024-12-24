@@ -1,0 +1,25 @@
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  application:
+    name: DeslreShopBoot
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    password: 200381
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  type-aliases-package: org.deslre.entity.po
+
+server:
+  port: 8080
+  servlet:
+    context-path: /deslre
+    encoding:
+      charset: UTF-8
+      force: true
+      force-request: true
