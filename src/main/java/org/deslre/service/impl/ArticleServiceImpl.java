@@ -31,7 +31,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public Results<List<Article>> getArticles() {
 
-        LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<Article>().eq(Article::getExist, true);
+        LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<Article>().eq(Article::getExist, 1);
         List<Article> articleList = list(wrapper);
         if (articleList == null) {
             List<Article> list = new ArrayList<>();
@@ -92,7 +92,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         if (id == null) {
             return Results.fail("获取文章信息失败，请联系作者");
         }
-        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>().eq(Article::getId, id).eq(Article::getExist, true);
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>().eq(Article::getId, id).eq(Article::getExist, 1);
         Article article = getOne(queryWrapper);
         if (article == null) {
             return Results.fail("查看当前文章失败");
@@ -100,5 +100,30 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return Results.ok(article);
     }
 
+    @Override
+    public Results<List<Article>> getList() {
+        List<Article> articleList = list();
+        if (articleList == null) {
+            List<Article> list = new ArrayList<>();
+            return Results.ok(list);
+        }
+        return Results.ok(articleList);
+    }
+
+    @Override
+    public Results<Void> updateExist(Integer id, Boolean exist) {
+        if (id == null || exist == null) {
+            return Results.fail("修改失败");
+        }
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>().eq(Article::getId, id);
+        Article article = getOne(queryWrapper);
+        if (article == null) {
+            return Results.fail("修改失败,当前文章不存在");
+        }
+        article.setExist(exist ? 1 : 0);
+        updateById(article);
+
+        return Results.ok("修改成功");
+    }
 }
 

@@ -38,9 +38,19 @@ public class ArticleController {
     }
 
     @PostMapping("getArticle")
-    public Results<Article> getArticle(Integer id){
+    public Results<Article> getArticle(Integer id) {
         return articleService.getArticle(id);
+    }
 
+    @GetMapping("getList")
+    public Results<List<Article>> getList() {
+        return articleService.getList();
+    }
+
+
+    @PostMapping("updateExist")
+    public Results<Void> updateExist(Integer id, Boolean exist) {
+        return articleService.updateExist(id, exist);
     }
 
 }
