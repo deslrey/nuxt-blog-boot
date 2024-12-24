@@ -25,4 +25,6 @@ public interface ArticleService extends IService<Article> {
     Results<Void> updateExist(Integer id, Boolean exist);
 
     Results<List<Article>> getList();
+
+    Results<Void> addArticle(Article article);
 }
