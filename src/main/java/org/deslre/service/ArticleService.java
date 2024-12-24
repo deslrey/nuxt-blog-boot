@@ -17,4 +17,6 @@ import java.util.List;
 public interface ArticleService extends IService<Article> {
 
     Results<List<Article>> getArticles();
+
+    Results<String> getData(Integer id);
 }

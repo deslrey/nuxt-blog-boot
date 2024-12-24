@@ -4,11 +4,9 @@ package org.deslre.controller;
 import org.deslre.entity.Article;
 import org.deslre.result.Results;
 import org.deslre.service.ArticleService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.List;
  * @since 2024-12-24
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/article")
 public class ArticleController {
 
@@ -30,6 +29,11 @@ public class ArticleController {
 
     @GetMapping("getArticles")
     public Results<List<Article>> getArticles() {
-        return  articleService.getArticles();
+        return articleService.getArticles();
+    }
+
+    @PostMapping("getId")
+    public Results<String> getData(Integer id) {
+        return articleService.getData(id);
     }
 }
